@@ -15,8 +15,7 @@ public class NYArticleServiceInteractorImpl implements NYArticleServiceInteracto
         NYArticleServiceHelper.getAllArticles(period, new RestRequestListener<AllItems>() {
             @Override
             public void onSuccess(AllItems allItems) {
-                if(allItems != null){
-                    if(restRequestListener != null)
+                if((allItems != null)&&(restRequestListener != null)){
                         restRequestListener.onSuccess(allItems.getResults());
                 }
 

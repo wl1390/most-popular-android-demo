@@ -12,7 +12,7 @@ Note: App icon generated using [https://romannurik.github.io/AndroidAssetStudio]
 
 ### Requirements
 - Android Studio
-- Java 8
+- Java 8 
 
 ### API Key 
 
@@ -152,7 +152,7 @@ To setup Appium and to run the functional tests follow the [README.md](./appium/
 ```
   <meta-data
     android:name="io.fabric.ApiKey"
-    android:value="f5f26ce539a22aasdfadfba93162b6884444dd8af4cef"
+    android:value="f5f26ce539a22aasdfadfba93162b6884444dd8af4cef" 
     />
 ```
 

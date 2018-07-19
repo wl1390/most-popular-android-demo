@@ -60,13 +60,6 @@ public class ArticleListFragment extends BaseFragment implements ArticleListFrag
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-
-    }
-
-    @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         if(context != null && context instanceof FragmentCallback){

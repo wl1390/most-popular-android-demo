@@ -1,5 +1,7 @@
 package com.android.nytimes.service;
 
+import android.util.Log;
+
 import com.android.nytimes.common.error.BaseURLEmptyException;
 import com.android.nytimes.model.AllItems;
 import com.android.nytimes.common.network.ApiClientProvider;
@@ -14,6 +16,7 @@ import retrofit2.Response;
  */
 
 public class NYArticleServiceHelper {
+    private NYArticleServiceHelper(){}
 
     public static void getAllArticles(String period, final RestRequestListener restRequestListener) {
         try {
@@ -37,7 +40,7 @@ public class NYArticleServiceHelper {
                 }
             });
         } catch (BaseURLEmptyException e) {
-            e.printStackTrace();
+            Log.e("error",e.getMessage());
         }
 
     }
