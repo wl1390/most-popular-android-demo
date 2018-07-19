@@ -1,0 +1,83 @@
+# More documentation about how to customize your build
+# can be found here:
+# https://docs.fastlane.tools
+fastlane_version "2.68.0"
+
+# This value helps us track success metrics for Fastfiles
+# we automatically generate. Feel free to remove this line
+# once you get things running smoothly!
+generated_fastfile_id "d8dd5281-f9b8-4558-ad3a-e6faa03246e9"
+
+default_platform :android
+
+# Fabric Tokens
+API_TOKEN = 'f5f26ce539a66b8dfba93162b688d44dd8af4cef'
+BUILD_SECRET = 'ee11612934e155f7c627574af4f4e367f0a69f08ba038e074428d89ad6788a40'
+
+# Fastfile actions accept additional configuration, but
+# don't worry, fastlane will prompt you for required
+# info which you can add here later
+
+lane :lint do
+  gradle(task: "lint")
+end
+
+lane :tests do
+  gradle(task: "test")
+end
+
+lane :build_for_appium do
+  build_android_app(
+    task: "assemble",
+    build_type: "Debug",
+    print_command: true
+  )
+end
+
+lane :beta do
+  # build the release variant
+  build_android_app(
+    task: "assemble",
+    build_type: "Release",
+    print_command: true,
+    properties: {
+      "android.injected.signing.store.file" => "keystore.jks",
+      "android.injected.signing.store.password" => "keystore_password",
+      "android.injected.signing.key.alias" => "alias",
+      "android.injected.signing.key.password" => "alias_password",
+    }
+  )
+
+  #build_android_app(task: "assembleRelease")
+
+  # upload to Beta by Crashlytics
+  #crashlytics(
+  #  api_token: "f5f26ce539a66b8dfba93162b688d44dd8af4cef",
+  #  build_secret: "ee11612934e155f7c627574af4f4e367f0a69f08ba038e074428d89ad6788a40",
+  #  # apk_path: "most-popular-android/app/build/outputs/apk/release/app-release.apk",
+  #  debug: "true"
+  #)
+
+  upload_crashlytics(groups: "testers")
+  notify_on_slack
+end
+
+private_lane :upload_crashlytics do |options|
+  groups = options[:groups]
+
+  crashlytics(
+    api_token: API_TOKEN,
+    build_secret: BUILD_SECRET,
+    debug: "true",
+    groups: groups
+  )
+  
+end
+
+private_lane :notify_on_slack do
+
+  slack(
+  slack_url: "https://hooks.slack.com/services/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"
+  )
+
+end
