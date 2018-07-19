@@ -1,7 +1,7 @@
 package com.android.nytimes.common.network;
 
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 import okhttp3.Interceptor;
@@ -11,11 +11,9 @@ import okhttp3.Response;
 
 public class BaseRequestInterceptor implements Interceptor {
 
-    private final static String TAG = "BaseRequestInterceptor";
+    private java.util.Map<String, String> requestHeaderValues;
 
-    private HashMap<String, String> requestHeaderValues;
-
-    public BaseRequestInterceptor(HashMap<String, String> headerValues) {
+    public BaseRequestInterceptor(Map<String, String> headerValues) {
         requestHeaderValues = headerValues;
     }
 
@@ -34,19 +32,18 @@ public class BaseRequestInterceptor implements Interceptor {
         }
         // Customize the request
         Request request = newBuilder
-                //TODO check needed default headers
+                //check needed default headers
 //                .header("Accept", "application/json")
 //                .header("Authorization", "auth-token")
 //                .header("ContentType", X_CONTENT_TYPE)
                 .method(original.method(), original.body())
                 .build();
 
-        Response response = chain.proceed(request);
         // Customize or return the response
-        return response;
+        return chain.proceed(request);
     }
 
-    public void setRequestHeaderValues(HashMap<String, String> headers){
+    public void setRequestHeaderValues(Map<String, String> headers){
         this.requestHeaderValues = headers;
     }
 }

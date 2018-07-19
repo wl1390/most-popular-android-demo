@@ -23,19 +23,31 @@ public class CustomDesirializer implements JsonDeserializer<Result> {
     public Result deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         Result response = new Gson().fromJson(json, Result.class);
         JsonObject jsonObject = json.getAsJsonObject();
+
+        ifJsonHasMedia(jsonObject,response);
+
+        ifJsonHasFacet(jsonObject,response);
+
+        return response;
+    }
+
+    private void ifJsonHasMedia(JsonObject jsonObject, Result response){
         if (jsonObject.has("media")) {
             JsonElement elem = jsonObject.get("media");
-            if (elem != null && !elem.isJsonNull()) {
-                if(elem.isJsonArray()){
-                    List<Medium> mediums = new ArrayList<>();
-                    for (JsonElement value: elem.getAsJsonArray()) {
-                        Medium mymedium = new Gson().fromJson(value, Medium.class);
-                        mediums.add(mymedium);
-                    }
-                    response.setMedia( mediums);
+            if ((elem != null && !elem.isJsonNull()&&(elem.isJsonArray()))) {
+
+                List<Medium> mediums = new ArrayList<>();
+                for (JsonElement value: elem.getAsJsonArray()) {
+                    Medium mymedium = new Gson().fromJson(value, Medium.class);
+                    mediums.add(mymedium);
                 }
+                response.setMedia( mediums);
             }
         }
+
+    }
+
+    private void ifJsonHasFacet(JsonObject jsonObject, Result response){
 
         if (jsonObject.has("per_facet")) {
             JsonElement elem = jsonObject.get("per_facet");
@@ -51,6 +63,7 @@ public class CustomDesirializer implements JsonDeserializer<Result> {
                 }
             }
         }
-        return response;
     }
+
+
 }

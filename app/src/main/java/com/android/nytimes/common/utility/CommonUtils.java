@@ -15,6 +15,8 @@ import com.android.nytimes.R;
 
 public class CommonUtils {
 
+    private CommonUtils(){}
+
     public static int calculateInSampleSize(
             BitmapFactory.Options options, int reqWidth, int reqHeight) {
         // Raw height and width of image
@@ -38,7 +40,7 @@ public class CommonUtils {
         return inSampleSize;
     }
 
-    public final static RecyclerView.ItemDecoration getListDivider(Context context) {
+    public static RecyclerView.ItemDecoration getListDivider(Context context) {
         DividerItemDecoration horizontalDecoration = new DividerItemDecoration(context,
                 DividerItemDecoration.VERTICAL);
         Drawable horizontalDivider = ContextCompat.getDrawable(context, R.drawable.horizontal_divider);

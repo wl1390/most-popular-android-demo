@@ -29,7 +29,7 @@ public class Result {
     private String title;
     @SerializedName("abstract")
     @Expose
-    private String _abstract;
+    private String abstractA;
     @SerializedName("published_date")
     @Expose
     private String publishedDate;
@@ -130,11 +130,11 @@ public class Result {
     }
 
     public String getAbstract() {
-        return _abstract;
+        return abstractA;
     }
 
-    public void setAbstract(String _abstract) {
-        this._abstract = _abstract;
+    public void setAbstract(String abstractA) {
+        this.abstractA = abstractA;
     }
 
     public String getPublishedDate() {

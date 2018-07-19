@@ -22,7 +22,6 @@ import java.util.List;
 public class ArticleListAdapter<T> extends RecyclerView.Adapter<ArticleListAdapter.ViewHolder> {
 
     private final List<T> mData;
-    private final ArticleListFragmentView mArticleListFragmentView;
     private final Picasso mPicasso;
     private final ArticleListItemClickListener mArticleListItemClickListener;
 
@@ -50,7 +49,6 @@ public class ArticleListAdapter<T> extends RecyclerView.Adapter<ArticleListAdapt
 
     public ArticleListAdapter(List<T> data, ArticleListFragmentView articleListFragmentView, Picasso picasso, ArticleListItemClickListener articleListItemClickListener){
         mData = data;
-        mArticleListFragmentView = articleListFragmentView;
         mPicasso = picasso;
         mArticleListItemClickListener = articleListItemClickListener;
     }

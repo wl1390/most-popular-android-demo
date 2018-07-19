@@ -2,7 +2,6 @@ package com.android.nytimes.common.utility;
 
 import android.graphics.Bitmap;
 import android.view.View;
-import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
@@ -25,10 +24,6 @@ public class AppWebViewClient extends WebViewClient {
         this.progressBar.setVisibility(View.VISIBLE);
     }
 
-    @Override
-    public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-        return super.shouldOverrideUrlLoading(view, request);
-    }
 
     @Override
     public void onPageFinished(WebView view, String url) {

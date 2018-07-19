@@ -13,6 +13,7 @@ import org.simpleframework.xml.convert.AnnotationStrategy;
 import org.simpleframework.xml.core.Persister;
 import org.simpleframework.xml.strategy.Strategy;
 
+
 import java.security.cert.CertificateException;
 import java.util.HashMap;
 
@@ -144,10 +145,12 @@ public class ApiClientProvider {
                     new X509TrustManager() {
                         @Override
                         public void checkClientTrusted(java.security.cert.X509Certificate[] chain, String authType) throws CertificateException {
+                            //empty
                         }
 
                         @Override
                         public void checkServerTrusted(java.security.cert.X509Certificate[] chain, String authType) throws CertificateException {
+                            //empty
                         }
 
                         @Override
@@ -177,21 +180,15 @@ public class ApiClientProvider {
                 builder.addInterceptor(interceptor);
             }
 
-//            OkHttpClient okHttpClient = builder.build();
             return builder;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
     }
 
     private Gson createGson(){
-       /* mGson = new GsonBuilder()
-                .setLenient()
-                .create();*/
-        Gson mGson = new GsonBuilder()
-                .registerTypeAdapter(Result.class, new CustomDesirializer())
-                .create();
-        return mGson;
+        return new GsonBuilder().registerTypeAdapter(Result.class, new CustomDesirializer()).create();
     }
 
 

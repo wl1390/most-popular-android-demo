@@ -18,14 +18,9 @@ import com.android.nytimes.common.utility.AppWebViewClient;
 
 public class ArticleDetailFragment extends BaseFragment {
 
-    public final String TAG = ArticleDetailFragment.class.getSimpleName();
+
     private View mView;
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
 
     @Nullable
     @Override

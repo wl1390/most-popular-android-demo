@@ -4,6 +4,7 @@ from utils import animate, think, longthink
 @given('I wait a few seconds for the network')
 def step_impl(context):
     longthink()
+    longthink()
 
 @then('I should be able to scroll down without errors')
 def step_impl(context):
@@ -11,7 +12,7 @@ def step_impl(context):
     
     think()
     
-
+    
 @then('I should be able to scroll up without errors')
 def step_impl(context):
     context.actor.swipeDownAndroid(completion=animate)

@@ -1,9 +1,7 @@
 package com.android.nytimes.service;
 
 import com.android.nytimes.model.AllItems;
-import com.google.gson.JsonElement;
 
-import org.json.JSONObject;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
