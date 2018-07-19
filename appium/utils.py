@@ -24,8 +24,8 @@ def getDriver():
 
     capabilities = {
         'platformName': 'android',
-        'avd': 'Nexus_5X_API_26',
-        'deviceName': 'Nexus_5X_API_26',
+        'avd': 'Nexus_5X_API_25',
+        'deviceName': 'Nexus_5X_API_25',
         # 'appWaitActivity': 'com.fab.fabwallet.ui.landing.LandingActivity, com.fab.fabwallet.ui.splash.SplashActivity',
         'app': PATH('../app/build/outputs/apk/debug/app-debug.apk'),
         'autoGrantPermissions': "true",
@@ -133,3 +133,6 @@ class BaseTestCase(unittest.TestCase):
         except Exception as e:
             pass
 
+
+    def runTest(self):
+        pass
